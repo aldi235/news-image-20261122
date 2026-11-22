@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The World Today - Sunday 22 November 2026.
 
-A deterministic 1024x1024 front page drawn with PIL: 38 short,
+A deterministic 1024x1024 front page drawn with PIL: 39 short,
 source-checked stories across 7 regions, a schematic world map with
 story markers, a markets strip and a UTC timeline. Run twice and the
 output PNG is byte-identical.
@@ -100,39 +100,39 @@ def region_header(drw, x, y, col_w, name, count):
     return y + 23
 
 
-# --- the news: 38 stories, 7 regions --------------------------------------
+# --- the news: 39 stories, 7 regions --------------------------------------
 # (headline, source tag)
 REGIONS = [
     ("Middle East", [
+        ("Iran downs fourth US drone in a day; 25 tankers hit in a week",
+         "AL JAZEERA"),
         ("Iran hits US bases in Bahrain for the fourth time in nine days",
          "AL JAZEERA"),
-        ("Two tankers struck near Strait of Hormuz as hawks press Trump",
-         "NY POST"),
         ("US jets hit missile site on Iran's Qeshm Island; Tehran denies damage",
          "DEFENSE DOMAIN"),
         ("Houthi missile damages Riyadh's PIF Tower; Saudi defences down drones",
          "DEFENSE DOMAIN"),
         ("Iran stages 14-tanker convoy off Kharg Island to break US blockade",
          "DEFENSE NEWS"),
-        ("Taiz under Houthi siege enters third month as civilian deaths mount",
-         "AFP"),
+        ("Iran army says it hit US sites at Kuwait's Ali Al Salem base",
+         "AL JAZEERA"),
     ]),
     ("Europe", [
-        ("Russia's biggest strike of the year: 110 missiles, 400 drones hit Kyiv",
+        ("Drone hits Kyiv flat; 14 missing as Russia fires 186 drones",
+         "REUTERS"),
+        ("Triple-tap strike kills boy, 7, and paramedic, 20, in Kryvyi Rih",
          "CNN"),
         ("Russian missiles land in Poland near NATO troop exercise; jets scrambled",
          "CNN"),
-        ("Triple-tap strike kills boy, 7, and paramedic, 20, in Kryvyi Rih",
-         "CNN"),
-        ("Trump, Putin and Xi hold historic trilateral in Shenzhen; no breakthrough",
-         "AP"),
-        ("Coalition of the Willing meets in Berlin, ready for direct Moscow talks",
-         "CNN"),
-        ("Russian helicopter suspected of violating Finnish airspace",
-         "THE INDEPENDENT"),
+        ("Denmark expels Russian attaché over foiled plot to kill rapper",
+         "THE GUARDIAN"),
+        ("Zelenskyy: Trump told Europe to stop funding Ukraine war",
+         "REUTERS"),
+        ("Russian ship hit in Gulf of Finland; Kyiv blamed as crew evacuated",
+         "PARTICLE NEWS"),
     ]),
     ("North America", [
-        ("S&P 500 slides into correction as Nasdaq sheds 5.3% in Friday rout",
+        ("S&P 500 enters correction; Nasdaq wipes out 2026 gains in rout",
          "AP"),
         ("Nvidia chief Jensen Huang resigns; shares dive 14% in a week",
          "AP"),
@@ -140,15 +140,15 @@ REGIONS = [
          "AP"),
         ("Mexico captures cartel boss 'El Chapo Isidro'; 11 killed in operation",
          "AFP"),
-        ("FBI probes second suspected breach of its crime database in months",
-         "AFP"),
-        ("US open to Latin American UN chief, envoy Waltz says amid gridlock",
-         "AP"),
+        ("Trump confirms FBI crime database breach; second hack in months",
+         "CNBC"),
+        ("Amazon nears $7.5bn deal for Israeli AI startup Decart",
+         "CRYPTO BRIEFING"),
     ]),
     ("Asia-Pacific", [
-        ("EU and Indonesia sign trade deal covering 730 million people",
+        ("EU and Indonesia sign trade deal; 98.5% of tariffs to go",
          "DUMPLING NEWS"),
-        ("Asian shares head for worst week since 2020 as AI gloom spreads",
+        ("Nikkei dives 5.1% as Asia rout deepens; Taiex worst week since 1997",
          "STRAITS TIMES"),
         ("World Court rules Myanmar committed genocide against Rohingya",
          "AP"),
@@ -158,71 +158,73 @@ REGIONS = [
          "GLOBAL NEXUS"),
         ("Japan-Russia tensions rise after two suspected airspace violations",
          "GLOBAL NEXUS"),
-        ("US approved nearly 900,000 AI chips for Chinese firms on Pentagon list",
-         "DUMPLING NEWS"),
+        ("Nepal PM Balendra Shah begins two-day visit to India",
+         "DAINIK JAGRAN"),
     ]),
     ("Africa", [
         ("Sudan's Tasis Alliance seizes Blue Nile's key Bau region",
          "AFP"),
         ("25 migrants deported from US arrive in Liberia",
          "AFP"),
-        ("Boat capsizes en route to burial in Nigeria; at least 24 dead",
+        ("Boat capsizes en route to burial in Nigeria; 24 dead",
          "AFP"),
-        ("Next climate summit set for Addis Ababa, Ethiopia, in November 2027",
+        ("Next climate summit set for Addis Ababa in November 2027",
          "AP"),
     ]),
     ("Latin America", [
-        ("Magnitude 6.7 quake hits Peru's Andes; no damage or casualties",
+        ("Magnitude 6.7 quake hits Peru's Andes; no casualties",
          "AFP"),
         ("Brazil lawmaker calls online strategy behind Lula win 'ethically dubious'",
          "AFP"),
-        ("Colombia mine blast kills two workers; two missing as rescue goes on",
+        ("Colombia mine blast kills two workers; two missing",
          "GLOBAL NEXUS"),
         ("El Salvador troops reclaim Haitian stadium in gang fight",
          "DUMPLING NEWS"),
-        ("Three US citizens among four convicted in Honduras trafficking case",
-         "AFP"),
+        ("Jailed Bolsonaro in intensive care with bowel blockage",
+         "REUTERS"),
     ]),
     ("Climate & Tech", [
-        ("COP31 in Antalya goes into overtime; draft omits fossil fuels",
-         "AP"),
-        ("Bitcoin plunges below $56,000; Ethereum near $1,600 in crypto rout",
-         "MOODVECTOR"),
+        ("COP31 collapses as EU, UK reject fossil-free draft",
+         "REUTERS"),
+        ("Bitcoin rebounds above $60,000 after sliding to $55,100",
+         "COINMARKETCAP"),
         ("UN talks on lethal autonomous weapons fall short of enforceable rules",
          "UN NEWS"),
-        ("Gold suffers worst week since March, down 9.2% to $3,527",
-         "TOPSTEP"),
+        ("Gold sinks to $3,515, worst week since March",
+         "INVESTOPEDIA"),
+        ("GTA 6 makes $3.79bn in a day, biggest launch ever",
+         "CNN"),
     ]),
 ]
 
 MARKETS = [
-    ("S&P 500", "7,176", "-7.1% wk", False),
-    ("NASDAQ", "25,552", "-8.7% wk", False),
-    ("DOW", "49,097", "-6.8% wk", False),
-    ("GOLD", "$3,527", "-9.2% wk", False),
-    ("SILVER", "$40.89", "-16.4% wk", False),
-    ("BRENT", "$91", "-5.5% wk", False),
-    ("WTI", "$82.45", "-5.5% wk", False),
+    ("S&P 500", "6,910", "-8.6% wk", False),
+    ("NASDAQ", "22,618", "-10% wk", False),
+    ("DOW", "48,147", "-8.0% wk", False),
+    ("GOLD", "$3,515", "-9.5% wk", False),
+    ("SILVER", "$41.07", "-16% wk", False),
+    ("BRENT", "$92.57", "-5.0% wk", False),
+    ("WTI", "$83.98", "-5.8% wk", False),
     ("DXY", "103.97", "+0.4% wk", True),
 ]
 
 TIMELINE = [
-    ("02:00", "COP31 overtime"),
-    ("05:30", "Asia shares slide"),
-    ("08:15", "Drones hit Russian ship"),
-    ("11:00", "Coalition meets Berlin"),
-    ("14:00", "Streeting visits Kyiv"),
-    ("18:40", "IRGC claims strikes"),
-    ("20:30", "Tankers hit"),
-    ("23:30", "Bahrain fire"),
+    ("00:15", "IRGC hits Bahrain"),
+    ("03:00", "BTC near $59,300"),
+    ("08:00", "COP31 longest ever"),
+    ("10:00", "14 missing in Kyiv"),
+    ("12:15", "Tanker toll hits 25"),
+    ("13:00", "COP31 collapses"),
+    ("13:52", "Bitcoin tops $60k"),
+    ("23:00", "US futures reopen"),
 ]
 
 NUMBERS = [
-    ("110", "missiles fired at Kyiv in one night"),
-    ("120+", "vessels attacked in Hormuz since Feb"),
-    ("-7.1%", "S&P 500's week - into correction"),
-    ("$3,527", "gold, worst week since March"),
-    ("14", "tankers in Iran's blockade-run convoy"),
+    ("25", "tankers hit around Hormuz in a week"),
+    ("186", "Russian drones fired at Ukraine overnight"),
+    ("-8.6%", "S&P 500's week — worst since Apr 2025"),
+    ("$3,515", "gold, worst week since March"),
+    ("14", "missing after drone hits Kyiv flat"),
 ]
 
 # Rough schematic continent outlines (lon, lat) - hand-drawn, not traced.
@@ -269,7 +271,7 @@ def build():
 
     # ---- masthead ------------------------------------------------------
     d.text((mx, 14), "THE WORLD TODAY", font=F_TITLE, fill=TXT)
-    d.text((mx, 66), "SUNDAY 22 NOVEMBER 2026  •  38 STORIES  •  7 REGIONS  •  ALL SOURCE-CHECKED",
+    d.text((mx, 66), "SUNDAY 22 NOVEMBER 2026  •  39 STORIES  •  7 REGIONS  •  ALL SOURCE-CHECKED",
            font=F_KICK, fill=AMBER)
     d.text((W - mx - d.textlength("EDITION No. 22 — 2026", font=F_DATE), 20),
            "EDITION No. 22 — 2026", font=F_DATE, fill=MUT)
@@ -282,10 +284,10 @@ def build():
     d.rectangle([mx, ly, W - mx, ly + lh], fill=PANEL)
     d.rectangle([mx, ly, mx + 6, ly + lh], fill=RED)
     d.text((mx + 16, ly + 8), "LEAD  •  THE GULF ON EDGE", font=F_KICK, fill=RED)
-    lead = "Iran strikes US bases in Bahrain again — fourth attack in nine days"
+    lead = "Iran downs 4th US drone in a day as 25 tankers hit in a week of Gulf attacks"
     d.text((mx + 16, ly + 26), lead, font=F_LEAD, fill=TXT)
     deck = ("IRGC claims Patriot radar hits at al-Riffa and Awali; Bahrain says an industrial "
-            "site burned, no injuries. Two tankers hit near Hormuz as a 14-ship convoy forms.")
+            "site burned, no injuries. Hormuz shipping down 15% as Tehran offers a two-day truce.")
     for i, ln in enumerate(wrap(d, deck, F_DECK, W - 2 * mx - 32)):
         d.text((mx + 16, ly + 50 + i * 15), ln, font=F_DECK, fill=MUT)
 
